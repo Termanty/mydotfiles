@@ -9,8 +9,8 @@ set showcmd			" display incomplete commands
 set incsearch			" do incremental searching
 set autoindent
 set relativenumber
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set clipboard=unnamedplus
 set pastetoggle=<F2>
@@ -23,6 +23,7 @@ imap jj <ESC>
 inoremap <C-U> <C-G>u<C-U>
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
+map  <C-s> :w<CR>
 
 if has('mouse')
   set mouse=a
@@ -40,6 +41,7 @@ call vundle#begin()
   Plugin 'tpope/vim-fugitive'
   Plugin 'scrooloose/nerdTree'
   Plugin 'flazz/vim-colorschemes'
+  " Plugin 'Valloric/YouCompleteMe'
   " Plugin 'L9'
   " Plugin 'git://git.wincent.com/command-t.git'  " Git plugin not hosted on GitHub
   " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -52,3 +54,8 @@ let g:gruvbox_italicize_comments=1
 let g:gruvbox_italicize_strings=1
 colorscheme gruvbox
 set bg=dark
+
+autocmd VimEnter * if !argc() | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
