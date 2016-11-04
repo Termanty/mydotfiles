@@ -16,10 +16,12 @@ set clipboard=unnamedplus
 set pastetoggle=<F2>
 set t_ZH=[3m
 set t_ZR=[23m
+set scrolloff=2
 
 highlight Comment cterm=italic
 
-imap jj <ESC> 
+map ð <ESC> 
+map! ð <ESC> 
 inoremap <C-U> <C-G>u<C-U>
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
@@ -33,7 +35,6 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
-
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
