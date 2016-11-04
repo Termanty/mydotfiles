@@ -1,10 +1,12 @@
-# export NVM_DIR="/home/termanty/.nvm"
+export NVM_DIR="/home/termanty/.nvm"
 
-# export NVM_DIR="/home/termanty/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# nvm use 0.12
+export NVM_DIR="/home/termanty/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm use 4.4.7
 
 export BROWSER=google-chrome
+
+export PATH=$PATH:~/vscode/
 
 if [ -f ~/.bash_aliases ]; then
 source ~/.bash_aliases
