@@ -22,33 +22,42 @@ highlight Comment cterm=italic
 
 " CUSTOM KEY BINDINGS ---------------------------
 
-" ALTGR d/D as ESC
-map ð <ESC> 
-map! ð <ESC>
-map Ð <ESC>
-map! Ð <ESC>
-" Kill Caps Lock when leaving insert mode
-autocmd InsertLeave * set iminsert=0 
+" Hack to get alt-keys work
+" http://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+set timeout ttimeoutlen=20
 
+" Miscelanous
 inoremap <C-U> <C-G>u<C-U>
-map  <C-l> :tabn<CR>
-map  <C-h> :tabp<CR>
 map  <C-s> :w<CR>
+nnoremap U J
 
+" Cursor movements
 nnoremap t e
 nnoremap T E
 nnoremap e b
 nnoremap E B
-
-nnoremap U J
-nnoremap J L
-nnoremap K H
 nnoremap H ^
 nnoremap L $
+nnoremap J L
+nnoremap K H
 
+" Move line(s) up and down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <esc>:m .+1<CR>==gi
+inoremap <A-k> <esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Scroll page up and down
 noremap K :call Hcontext()<CR>
 noremap J :call Lcontext()<CR>
-
 func! Hcontext()
   if (winline() == &so+1 && line(".") != 1)
     exe "normal! \<PageUp>H"
@@ -57,7 +66,6 @@ func! Hcontext()
   endif
   echo ''
 endfunc
-
 func! Lcontext()
   if (winline() == winheight(0)-&so && line(".") != line("$"))
     exe "normal! \<PageDown>L"
@@ -66,6 +74,10 @@ func! Lcontext()
   endif
     echo ''
 endfunc
+
+
+" END key bindings -------------------------------------------
+
 
 
 if has('mouse')
