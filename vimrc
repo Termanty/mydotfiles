@@ -20,12 +20,53 @@ set scrolloff=2
 
 highlight Comment cterm=italic
 
+" CUSTOM KEY BINDINGS ---------------------------
+
+" ALTGR d/D as ESC
 map ð <ESC> 
-map! ð <ESC> 
+map! ð <ESC>
+map Ð <ESC>
+map! Ð <ESC>
+" Kill Caps Lock when leaving insert mode
+autocmd InsertLeave * set iminsert=0 
+
 inoremap <C-U> <C-G>u<C-U>
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
 map  <C-s> :w<CR>
+
+nnoremap t e
+nnoremap T E
+nnoremap e b
+nnoremap E B
+
+nnoremap U J
+nnoremap J L
+nnoremap K H
+nnoremap H ^
+nnoremap L $
+
+noremap K :call Hcontext()<CR>
+noremap J :call Lcontext()<CR>
+
+func! Hcontext()
+  if (winline() == &so+1 && line(".") != 1)
+    exe "normal! \<PageUp>H"
+  else
+    exe "normal! H"
+  endif
+  echo ''
+endfunc
+
+func! Lcontext()
+  if (winline() == winheight(0)-&so && line(".") != line("$"))
+    exe "normal! \<PageDown>L"
+  else
+    exe "normal! L"
+  endif
+    echo ''
+endfunc
+
 
 if has('mouse')
   set mouse=a
@@ -51,7 +92,7 @@ filetype plugin indent on
 
 syntax enable
 let g:gruvbox_italic=1
-let g:gruvbox_italicize_comments=1
+let g:gruvbox_italicize_comments=1 
 let g:gruvbox_italicize_strings=1
 colorscheme gruvbox
 set bg=dark
