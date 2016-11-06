@@ -1,12 +1,20 @@
-export NVM_DIR="/home/termanty/.nvm"
 
-export NVM_DIR="/home/termanty/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-nvm use 4.4.7
+user=$(whoami)
+if [ $user == "tero" ]; then
+  echo ".bashrc setting for tero@x24"
+fi
+if [ $user == "termanty" ]; then
+  echo ".bashrc settings for termanty at cs.helsinki enviroment"
+  export NVM_DIR="/home/termanty/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  nvm use 4.4.7
+  export PATH=$PATH:~/vscode/
+fi
 
 export BROWSER=google-chrome
 
-export PATH=$PATH:~/vscode/
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape'
 
 if [ -f ~/.bash_aliases ]; then
 source ~/.bash_aliases
@@ -23,3 +31,5 @@ man() {
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
             man "$@"
 }
+
+
