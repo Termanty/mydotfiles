@@ -1,3 +1,4 @@
+export BROWSER=google-chrome
 
 user=$(whoami)
 if [ $user == "tero" ]; then
@@ -9,10 +10,13 @@ if [ $user == "termanty" ]; then
     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
   nvm use 4.4.7
   export PATH=$PATH:~/vscode/
+  export PATH=$PATH:~/xcape/
 fi
 
 export BROWSER=google-chrome
 export PATH=$PATH:~/bin/
+
+setxkbmap -option 'caps:escape'
 
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
