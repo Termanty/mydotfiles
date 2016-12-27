@@ -12,12 +12,10 @@ if [ $user == "termanty" ]; then
 fi
 
 export BROWSER=google-chrome
-
-setxkbmap -option 'caps:ctrl_modifier'
-xcape -e 'Caps_Lock=Escape'
+export PATH=$PATH:~/bin/
 
 if [ -f ~/.bash_aliases ]; then
-source ~/.bash_aliases
+  source ~/.bash_aliases
 fi
 
 man() {
@@ -32,4 +30,6 @@ man() {
             man "$@"
 }
 
+#so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
+stty -ixon
 

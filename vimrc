@@ -36,6 +36,7 @@ set timeout ttimeoutlen=20
 inoremap <C-U> <C-G>u<C-U>
 map  <C-s> :w<CR>
 nnoremap U J
+nnoremap <A-u> g~ib
 
 " Cursor movements
 nnoremap t e
